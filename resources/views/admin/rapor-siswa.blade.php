@@ -20,13 +20,13 @@
                     <table style="width: 100%">
                         <tbody>
                             <td style="width: 15%">Nama Sekolah</td>
-                            <td style="width: 63%">: SMP IT CENDIKIA SUMBAWA</td>
+                            <td style="width: 63%">: SMP IT CENDEKIA SUMBAWA</td>
                             <td>Kelas</td>
                             <td>: {{ $kelas->nama_kelas }}</td>
                         </tbody>
                         <tbody>
                             <td>Alamat</td>
-                            <td>: JL. Mawar II</td>
+                            <td>: Karang Padak Labuhan Sumbawa</td>
                             <td>Semester</td>
                             <td>: 2 (Dua)</td>
                         </tbody>
