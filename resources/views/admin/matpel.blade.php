@@ -37,7 +37,7 @@
                                     @csrf
                                     <div class="modal-body">
                                         <div class="form-group">
-                                            <input type="text" id="kode" name="kode" placeholder="Masukkan nomor Kode Matkul" class="form-control" required autocomplete="off" pattern="[0-9]+">
+                                            <input type="text" id="kode" name="kode" placeholder="Masukkan nomor Kode Surah" class="form-control" required autocomplete="off" pattern="[0-9]+">
                                         </div>
                                         <div class="form-group">
                                             <input type="text" id="nama" name="nama" placeholder="Masukkan Nama Surah" class="form-control" required autocomplete="off">

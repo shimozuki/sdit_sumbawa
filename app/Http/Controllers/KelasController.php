@@ -46,10 +46,16 @@ class KelasController extends Controller
         $kelas = Kelas::findOrFail($kode_kelas);
 
         // Update atribut kelas dengan data yang diterima dari formulir
-        $kelas->update([
-            'kode_kelas' => $request->kode_kelas,
-            'nama_kelas' => $request->nama_kelas,
-        ]);
+        // $kelas->update([
+        //     'kode_kelas' => $request->kode_kelas,
+        //     'nama_kelas' => $request->nama_kelas,
+        // ]);
+
+        $new_kelas = new kelas();
+
+        $kelas->kode_kelas = $request->kode_kelas;
+        $kelas->nama_kelas = $request->nama_kelas;
+        $kelas->save();
 
         // Redirect kembali ke halaman sebelumnya dengan pesan sukses
         return redirect()->back()->with('success', 'Data kelas berhasil diperbarui.');

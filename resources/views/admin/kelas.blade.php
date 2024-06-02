@@ -112,7 +112,7 @@
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
-                                            <form action="{{ route('tahsin.update', $mp->kode_kelas) }}" method="POST">
+                                            <form action="{{ route('kelas.update', $mp->kode_kelas) }}" method="POST">
                                                 @csrf
                                                 @method('PUT')
                                                 <div class="modal-body">

@@ -22,7 +22,7 @@
                             <td style="width: 15%">Nama Sekolah</td>
                             <td style="width: 63%">: SMP IT CENDIKIA SUMBAWA</td>
                             <td>Kelas</td>
-                            <td>: XII MIPA 2</td>
+                            <td>: </td>
                         </tbody>
                         <tbody>
                             <td>Alamat</td>
@@ -170,7 +170,7 @@
                                     <th>D</th>
                                     <th>C</th>
                                     <th>B</th>
-                                    <th>5</th>
+                                    <th>A</th>
                                 </tr>
                             </thead>
                             <tbody>
