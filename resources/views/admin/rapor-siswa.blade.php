@@ -22,7 +22,7 @@
                             <td style="width: 15%">Nama Sekolah</td>
                             <td style="width: 63%">: SMP IT CENDIKIA SUMBAWA</td>
                             <td>Kelas</td>
-                            <td>: {{ $kelas }}</td>
+                            <td>: {{ $kelas->nama_kelas }}</td>
                         </tbody>
                         <tbody>
                             <td>Alamat</td>

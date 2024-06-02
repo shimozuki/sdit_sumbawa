@@ -26,7 +26,7 @@ class RaporDetailController extends Controller
         $data_siswa = Siswa::where('nisn','=',$id)->firstOrFail();
         $data_nilai = Nilai::all()->where('nisn_siswa', '=' ,$id);
         $data_matpel = Matpel::all();
-        $kelas = Kelas::where('kode_kelas', $siswa->kelas_id)->select('nama_kelas')->first();
+        $kelas = Kelas::where('kode_kelas', '=', $data_siswa->kelas_id)->select('nama_kelas')->first();
         $years = date('Y');
         $nextyears = $years + 1;
 
