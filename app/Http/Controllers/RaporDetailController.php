@@ -9,6 +9,7 @@ use App\Models\Siswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redis;
+use App\Models\Kelas;
 
 class RaporDetailController extends Controller
 {
@@ -25,8 +26,9 @@ class RaporDetailController extends Controller
         $data_siswa = Siswa::where('nisn','=',$id)->firstOrFail();
         $data_nilai = Nilai::all()->where('nisn_siswa', '=' ,$id);
         $data_matpel = Matpel::all();
+        $kelas = Kelas::where('kode_kelas', $siswa->kelas_id)->firstOrFail();
 
-        return view('admin.rapor-siswa', compact('siswa', 'data_siswa', 'data_matpel', 'data_nilai'));
+        return view('admin.rapor-siswa', compact('siswa', 'data_siswa', 'data_matpel', 'data_nilai', 'kelas'));
     }
 
     /**

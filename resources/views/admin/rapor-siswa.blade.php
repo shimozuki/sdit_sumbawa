@@ -22,7 +22,7 @@
                             <td style="width: 15%">Nama Sekolah</td>
                             <td style="width: 63%">: SMP IT CENDIKIA SUMBAWA</td>
                             <td>Kelas</td>
-                            <td>: </td>
+                            <td>: {{ $kelas->name_kelas }}</td>
                         </tbody>
                         <tbody>
                             <td>Alamat</td>
@@ -88,14 +88,14 @@
                             @endphp
                             @endif
                             @endforeach
-                            <tbody>
+                            <!-- <tbody>
                                 <tr>
                                     <td colspan="7">
                                         Kelompok B ( Umum )
                                     </td>
                                 </tr>
-                            </tbody>
-                            @foreach ($data_nilai as $dn)
+                            </tbody> -->
+                            <!-- @foreach ($data_nilai as $dn)
                             @if ($dn->matpel->kelompok == 'Kelompok B ( Umum )')
                             <tbody>
                                 <tr>
@@ -118,8 +118,8 @@
                             @endif
 
 
-                            @endforeach
-                            <tbody>
+                            @endforeach -->
+                            <!-- <tbody>
                                 <tr>
                                     <td colspan="7">
                                         Kelompok C ( Peminatan )
@@ -149,7 +149,7 @@
                             @endif
 
 
-                            @endforeach
+                            @endforeach -->
 
 
                         </table>

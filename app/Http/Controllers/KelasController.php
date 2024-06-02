@@ -51,8 +51,6 @@ class KelasController extends Controller
         //     'nama_kelas' => $request->nama_kelas,
         // ]);
 
-        $new_kelas = new kelas();
-
         $kelas->kode_kelas = $request->kode_kelas;
         $kelas->nama_kelas = $request->nama_kelas;
         $kelas->save();
