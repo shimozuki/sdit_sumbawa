@@ -43,9 +43,6 @@
                                             <input type="text" id="nama" name="nama_kelas" placeholder="Masukkan Nama Kelas" class="form-control" required autocomplete="off">
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <input type="text" id="nama" name="nama_kelas" placeholder="Masukkan Nama Kelas" class="form-control" required autocomplete="off">
-                                    </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
                                         <button type="submit" class="btn btn-primary">Simpan</button>

@@ -20,7 +20,7 @@
                     <table style="width: 100%">
                         <tbody>
                             <td style="width: 15%">Nama Sekolah</td>
-                            <td style="width: 63%">: SMP IT CENDIKIAWAN SUMBAWA</td>
+                            <td style="width: 63%">: SMP IT CENDIKIA SUMBAWA</td>
                             <td>Kelas</td>
                             <td>: XII MIPA 2</td>
                         </tbody>

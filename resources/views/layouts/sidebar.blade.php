@@ -5,7 +5,7 @@
         <div class="sidebar-brand-icon">
             <img style="width: 40px" src="{{ asset('img/SM.png') }}" alt="">
         </div>
-        <div class="sidebar-brand-text mx-3">SMP IT CENDIKIAWAN</div>
+        <div class="sidebar-brand-text mx-3">SMP IT CENDIKIA</div>
     </a>
 
     <!-- Divider -->

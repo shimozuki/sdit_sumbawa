@@ -2,7 +2,7 @@
 <footer class="sticky-footer bg-white">
     <div class="container my-auto">
         <div class="copyright text-center my-auto">
-            <span>Copyright &copy; SMP Islam Terpadu Cendekiawan Sumbawa</span>
+            <span>Copyright &copy; SMP Islam Terpadu Samawa Cendekia Sumbawa</span>
         </div>
     </div>
 </footer>
