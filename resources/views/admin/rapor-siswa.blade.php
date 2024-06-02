@@ -22,7 +22,7 @@
                             <td style="width: 15%">Nama Sekolah</td>
                             <td style="width: 63%">: SMP IT CENDIKIA SUMBAWA</td>
                             <td>Kelas</td>
-                            <td>: {{ $kelas->name_kelas }}</td>
+                            <td>: {{ $kelas }}</td>
                         </tbody>
                         <tbody>
                             <td>Alamat</td>
@@ -34,7 +34,7 @@
                             <td>Nama Peserta Didik</td>
                             <td>: {{$data_siswa->nama}}</td>
                             <td>Tahun Pelajaran</td>
-                            <td>: 2019/2020</td>
+                            <td>: {{ $years }}/{{ $nextyears }}</td>
                         </tbody>
                         <tbody>
                             <td>Nomor Induk/NISN</td>

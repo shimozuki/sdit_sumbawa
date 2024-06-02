@@ -101,7 +101,14 @@ class SiswaController extends Controller
         $pass = bcrypt($request->password);
         $user = User::where('nisn_siswa', '=', $id)->update(array('username' => $request->username, 'password' => $pass));
 
-        $siswa->update($request->all());
+        // $siswa->update($request->all());
+        $siswa->nisn = $request->nisn;
+        $siswa->nama = $request->nama;
+        $siswa->alamat = $request->alamat;
+        $siswa->nama_wali = $request->nama_wali;
+        $siswa->no_tlpn_wali = $request->no_tlpn_wali;
+        $siswa->kelas_id = $request->kelas_id;
+        $siswa->save();
         return back()->with('success', 'Data Berhasil Diubah!');
     }
 

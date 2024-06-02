@@ -26,9 +26,11 @@ class RaporDetailController extends Controller
         $data_siswa = Siswa::where('nisn','=',$id)->firstOrFail();
         $data_nilai = Nilai::all()->where('nisn_siswa', '=' ,$id);
         $data_matpel = Matpel::all();
-        $kelas = Kelas::where('kode_kelas', $siswa->kelas_id)->firstOrFail();
+        $kelas = Kelas::where('kode_kelas', $siswa->kelas_id)->select('nama_kelas')->first();
+        $years = date('Y');
+        $nextyears = $years + 1;
 
-        return view('admin.rapor-siswa', compact('siswa', 'data_siswa', 'data_matpel', 'data_nilai', 'kelas'));
+        return view('admin.rapor-siswa', compact('siswa', 'data_siswa', 'data_matpel', 'data_nilai', 'kelas', 'years', 'nextyears'));
     }
 
     /**
