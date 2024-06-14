@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redis;
 use App\Models\Kelas;
+use App\Models\NilaiTahsin;
 
 class RaporDetailController extends Controller
 {
@@ -25,12 +26,13 @@ class RaporDetailController extends Controller
         $siswa = Siswa::where('nisn','=',Auth::user()->nisn_siswa)->firstOrFail();
         $data_siswa = Siswa::where('nisn','=',$id)->firstOrFail();
         $data_nilai = Nilai::all()->where('nisn_siswa', '=' ,$id);
+        $data_nilaitahsin = NilaiTahsin::all()->where('nisn_siswa', '=', $id);
         $data_matpel = Matpel::all();
         $kelas = Kelas::where('kode_kelas', '=', $data_siswa->kelas_id)->select('nama_kelas')->first();
         $years = date('Y');
         $nextyears = $years + 1;
 
-        return view('admin.rapor-siswa', compact('siswa', 'data_siswa', 'data_matpel', 'data_nilai', 'kelas', 'years', 'nextyears'));
+        return view('admin.rapor-siswa', compact('siswa', 'data_siswa', 'data_matpel', 'data_nilai', 'kelas', 'years', 'nextyears', 'data_nilaitahsin'));
     }
 
     /**

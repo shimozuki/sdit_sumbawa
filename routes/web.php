@@ -10,6 +10,7 @@ use App\Http\Controllers\TahsinController;
 use App\Http\Controllers\UpdatePasswordController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\NilaiTahsinController;
 
 /*
 |--------------------------------------------------------------------------
@@ -64,6 +65,8 @@ Route::group(['middleware' => ['auth', 'cekleveladmin', 'sweetalert'], 'prefix' 
 
     Route::resource('tahsin', TahsinController::class);
     Route::resource('kelas', KelasController::class);
+    Route::post('NilaiTahsin', [NilaiTahsinController::class, 'store'])->name('nilaiTahsin.store');
+
 });
 
 

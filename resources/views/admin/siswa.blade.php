@@ -46,10 +46,10 @@
                                             <input type="text" id="username" name="no_tlpn_wali" placeholder="Masukkan no tlpn wali" class="form-control" required autocomplete="off">
                                         </div>
                                         <div class="form-group">
-                                            <select class="form-control" id="kelas" name="kelas_id" required>
+                                            <select class="form-control" id="kelas_id" name="kelas_id" required>
                                                 <option value="" disabled selected>Pilih Kelas</option>
                                                 @foreach ($kelas as $kelas)
-                                                <option value="{{ $kelas->id }}">{{ $kelas->nama_kelas }}</option>
+                                                <option value="{{ $kelas->kode_kelas }}">{{ $kelas->nama_kelas }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -155,7 +155,7 @@
                                                         <input type="text" id="no_tlpn_wali" name="no_tlpn_wali" placeholder="Masukkan no_tlpn_wali" class="form-control" required autocomplete="off" value="{{$sw->username}}">
                                                     </div>
                                                     <div class="form-group">
-                                                        <select class="form-control" id="kelas" name="kelas_id" required>
+                                                        <select class="form-control" id="kelas_id" name="kelas_id" required>
                                                             <option value="" disabled>Pilih Kelas</option>
                                                             @foreach ($kelas as $row)
                                                             <option value="{{ $kelas->kode_kelas }}" @if ($kelas->kode_kelas == $siswa->kelas_id) selected @endif>{{ $kelas->nama_kelas }}</option>

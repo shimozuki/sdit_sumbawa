@@ -44,6 +44,47 @@
                     </table>
 
                     <div class="table-responsive mt-3">
+                        <p><Strong>A. Hasil Evaluasi Tahsin :</Strong></p>
+                        <table id="datatablesSimple" class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Uraian</th>
+                                    <th>Nilai</th>
+                                    <th>Predikat</th>
+                                    <th>Deskripsi</th>
+                                    <th>Keterangan</th>
+                                </tr>
+                            </thead>
+                            @php
+                            $i=1;
+                            @endphp
+                            @foreach ($data_nilaitahsin as $dn)
+                            <tbody>
+                                <tr>
+                                    <td>{{$i}}</td>
+                                    <td>{{$dn->tahsin->nama}}</td>
+                                    <td>{{$dn->nilai}}</td>
+                                    <td>{{$dn->predikat}}</td>
+                                    <td>{{$dn->ket}}</td>
+                                    <td>@if ($dn->nilai >= 75)
+                                        Terpenuhi
+                                        @else
+                                        Tidak Terpenuhi
+                                        @endif</td>
+                                </tr>
+                            </tbody>
+                            @php
+                            $i++;
+                            @endphp
+                            @endforeach
+                        </table>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div class="table-responsive mt-3">
+                        <p><Strong>B. Hasil Evaluasi Tahfiz :</Strong></p>
                         <table id="datatablesSimple" class="table table-bordered">
                             <thead>
                                 <tr>
@@ -56,18 +97,11 @@
                                     <th>Keterangan</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td colspan="7">
-                                        Kelompok A ( Umum )
-                                    </td>
-                                </tr>
-                            </tbody>
                             @php
                             $i=1;
                             @endphp
                             @foreach ($data_nilai as $dn)
-                            @if ($dn->matpel->kelompok == 'Kelompok A ( Umum )')
+                           
                             <tbody>
                                 <tr>
                                     <td>{{$i}}</td>
@@ -86,72 +120,7 @@
                             @php
                             $i++;
                             @endphp
-                            @endif
                             @endforeach
-                            <!-- <tbody>
-                                <tr>
-                                    <td colspan="7">
-                                        Kelompok B ( Umum )
-                                    </td>
-                                </tr>
-                            </tbody> -->
-                            <!-- @foreach ($data_nilai as $dn)
-                            @if ($dn->matpel->kelompok == 'Kelompok B ( Umum )')
-                            <tbody>
-                                <tr>
-                                    <td>{{$i}}</td>
-                                    <td>{{$dn->matpel->nama}}</td>
-                                    <td>{{$dn->matpel->kkm}}</td>
-                                    <td>{{$dn->nilai}}</td>
-                                    <td>{{$dn->predikat}}</td>
-                                    <td>{{$dn->ket}}</td>
-                                    <td>@if ($dn->nilai >= $dn->matpel->kkm)
-                                        Terpenuhi
-                                        @else
-                                        Tidak Terpenuhi
-                                        @endif</td>
-                                </tr>
-                            </tbody>
-                            @php
-                            $i++;
-                            @endphp
-                            @endif
-
-
-                            @endforeach -->
-                            <!-- <tbody>
-                                <tr>
-                                    <td colspan="7">
-                                        Kelompok C ( Peminatan )
-                                    </td>
-                                </tr>
-                            </tbody>
-                            @foreach ($data_nilai as $dn)
-                            @if ($dn->matpel->kelompok == 'Kelompok C ( Peminatan )')
-                            <tbody>
-                                <tr>
-                                    <td>{{$i}}</td>
-                                    <td>{{$dn->matpel->nama}}</td>
-                                    <td>{{$dn->matpel->kkm}}</td>
-                                    <td>{{$dn->nilai}}</td>
-                                    <td>{{$dn->predikat}}</td>
-                                    <td>{{$dn->ket}}</td>
-                                    <td>@if ($dn->nilai >= $dn->matpel->kkm)
-                                        Terpenuhi
-                                        @else
-                                        Tidak Terpenuhi
-                                        @endif</td>
-                                </tr>
-                            </tbody>
-                            @php
-                            $i++;
-                            @endphp
-                            @endif
-
-
-                            @endforeach -->
-
-
                         </table>
                     </div>
                 </div>
