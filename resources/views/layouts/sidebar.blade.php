@@ -55,6 +55,13 @@
         </a>
     </li>
 
+    <li class="nav-item {{ request()->is('peforma') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('peforma.index') }}">
+            <i class="fa-solid fa-clipboard"></i>
+            <span>Peforma</span>
+        </a>
+    </li>
+
     <li class="nav-item {{ request()->is('admin/rapor') ? 'active' : '' }}">
         <a class="nav-link" href="{{ route('rapor.index') }}">
             <i class="fas fa-fw fa-user-graduate"></i>

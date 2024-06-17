@@ -52,8 +52,6 @@
                                     <th>Uraian</th>
                                     <th>Nilai</th>
                                     <th>Predikat</th>
-                                    <th>Deskripsi</th>
-                                    <th>Keterangan</th>
                                 </tr>
                             </thead>
                             @php
@@ -66,12 +64,6 @@
                                     <td>{{$dn->tahsin->nama}}</td>
                                     <td>{{$dn->nilai}}</td>
                                     <td>{{$dn->predikat}}</td>
-                                    <td>{{$dn->ket}}</td>
-                                    <td>@if ($dn->nilai >= 75)
-                                        Terpenuhi
-                                        @else
-                                        Tidak Terpenuhi
-                                        @endif</td>
                                 </tr>
                             </tbody>
                             @php
@@ -93,15 +85,13 @@
                                     <th>KKM</th>
                                     <th>Nilai</th>
                                     <th>Predikat</th>
-                                    <th>Deskripsi</th>
-                                    <th>Keterangan</th>
                                 </tr>
                             </thead>
                             @php
                             $i=1;
                             @endphp
                             @foreach ($data_nilai as $dn)
-                           
+
                             <tbody>
                                 <tr>
                                     <td>{{$i}}</td>
@@ -109,12 +99,6 @@
                                     <td>{{$dn->matpel->kkm}}</td>
                                     <td>{{$dn->nilai}}</td>
                                     <td>{{$dn->predikat}}</td>
-                                    <td>{{$dn->ket}}</td>
-                                    <td>@if ($dn->nilai >= $dn->matpel->kkm)
-                                        Terpenuhi
-                                        @else
-                                        Tidak Terpenuhi
-                                        @endif</td>
                                 </tr>
                             </tbody>
                             @php
@@ -124,38 +108,91 @@
                         </table>
                     </div>
                 </div>
-                <div class="card-footer d-flex justify-content-center" style="width: 100%;">
-                    <div class="justify-content-left" style="width: 92%;">
-                        <p>Tabel interval predikat berdasarkan KKM</p>
+
+                <div class="card-body">
+                    <div class="table-responsive mt-3">
+                        <p><Strong>C. Peforma :</Strong></p>
+                        <table id="datatablesSimple" class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Penilaian</th>
+                                    <th>Nilai</th>
+                                </tr>
+                            </thead>
+                            @php
+                            $i=1;
+                            @endphp
+                            @foreach ($data_peforma as $dn)
+
+                            <tbody>
+                                <tr>
+                                    <td>{{$i}}</td>
+                                    <td>{{$dn->peforma->nama}}</td>
+                                    <td>{{$dn->predikat}}</td>
+                                </tr>
+                            </tbody>
+                            @php
+                            $i++;
+                            @endphp
+                            @endforeach
+                        </table>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="justify-content-left">
                         <table id="datatablesSimple" class="table table-bordered text-center">
                             <thead>
                                 <tr>
-                                    <th rowspan="2" class="align-middle">KKM</th>
-                                    <th colspan="5">Predikat</th>
-
-                                </tr>
-                                <tr>
-
-                                    <th>D</th>
-                                    <th>C</th>
-                                    <th>B</th>
-                                    <th>A</th>
+                                    <th class="align-middle">KKM</th>
+                                    <th>Keterangan Nilai</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <th>77</th>
-                                    <th>Nilai < 77</th>
-                                    <th>Nilai <= Nilai < 86</th>
-                                    <th>85 <= Nilai < 93</th>
-                                    <th>Nilai >= 93</th>
-
+                                    <td rowspan="4" class="align-middle">77</td>
+                                    <td>90-95 = A</td>
+                                </tr>
+                                <tr>
+                                    <td>80-89 = B</td>
+                                </tr>
+                                <tr>
+                                    <td>70-79 = C</td>
+                                </tr>
+                                <tr>
+                                    <td>60-69 = D</td>
                                 </tr>
                             </tbody>
                         </table>
-
                     </div>
                 </div>
+
+                <div class="card-body">
+                    <div class="table-responsive mt-3">
+                        <p><Strong>D. Kesimpulan :</Strong></p>
+                        <table id="datatablesSimple" class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Tahsin</th>
+                                    <th>Tahfiz</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="text-center">{{$ket_Tahsin->ket}}</td>
+                                    <td class="text-center">{{$ket_tahfiz->ket}}</td>
+                                </tr>
+                            </tbody>
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Pembimbing: {{ Auth::user()->username }}</th>
+                                    <th class="text-center">Pembimbing: {{ Auth::user()->username }}</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>

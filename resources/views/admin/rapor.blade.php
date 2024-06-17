@@ -145,6 +145,73 @@
     </div>
 
     <div class="row">
+
+        <div class="col-xl-6">
+            <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Input Peforma</h6>
+                </div>
+                <div class="card-body">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal2"><i class="fa-solid fa-plus"></i> Tambah Nilai</button>
+
+                    <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Tambah Data Nilai Peforma</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form action="{{route('nilaiPeforma.store')}}" method="POST">
+                                    @csrf
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <select class="form-control select2" style="width: 100%" name="nisn" id="nisn" required>
+                                                <option selected disabled value="">Pilih Siswa</option>
+                                                @foreach ($data_siswa as $item)
+                                                @if ($item->nama == 'admin' )
+                                                @continue
+                                                @endif
+                                                <option value="{{ $item->nisn}}">{{$item->nisn}} - {{ $item->nama}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <select class="form-control select2" style="width: 100%" name="kode_peforma" id="kode_peforma" required>
+                                                <option selected disabled value="">Pilih Peforma</option>
+                                                @foreach ($data_peforma as $item)
+                                                <option value="{{ $item->kode_peforma}}">{{$item->kode_peforma}} - {{ $item->nama}}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="form-group">
+                                            <select id="predik" name="predik" class="form-control" required>
+                                                <option value="Sangat Baik">Sangat Baik</option>
+                                                <option value="Baik">Baik</option>
+                                                <option value="Cukup">Cukup</option>
+                                                <option value="Kurang">Kurang</option>
+                                            </select>
+                                        </div>
+
+
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+                                        <button type="submit" class="btn btn-primary">Simpan</button>
+                                    </div>
+                            </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
         <div class="col-xl-6">
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->

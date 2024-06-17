@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redis;
 use App\Models\Kelas;
+use App\Models\NilaiPeforma;
 use App\Models\NilaiTahsin;
 
 class RaporDetailController extends Controller
@@ -27,12 +28,15 @@ class RaporDetailController extends Controller
         $data_siswa = Siswa::where('nisn','=',$id)->firstOrFail();
         $data_nilai = Nilai::all()->where('nisn_siswa', '=' ,$id);
         $data_nilaitahsin = NilaiTahsin::all()->where('nisn_siswa', '=', $id);
+        $data_peforma = NilaiPeforma::all()->where('nisn_siswa', '=', $id);
         $data_matpel = Matpel::all();
+        $ket_Tahsin = NilaiTahsin::select('ket')->first();
+        $ket_tahfiz = Nilai::select('ket')->first();
         $kelas = Kelas::where('kode_kelas', '=', $data_siswa->kelas_id)->select('nama_kelas')->first();
         $years = date('Y');
         $nextyears = $years + 1;
 
-        return view('admin.rapor-siswa', compact('siswa', 'data_siswa', 'data_matpel', 'data_nilai', 'kelas', 'years', 'nextyears', 'data_nilaitahsin'));
+        return view('admin.rapor-siswa', compact('siswa', 'data_siswa', 'data_matpel', 'data_nilai', 'kelas', 'years', 'nextyears', 'data_nilaitahsin', 'data_peforma', 'ket_Tahsin', 'ket_tahfiz'));
     }
 
     /**

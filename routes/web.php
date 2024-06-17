@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\MataPelajaranController;
+use App\Http\Controllers\NilaiPeformaController;
 use App\Http\Controllers\NilaiSiswaController;
 use App\Http\Controllers\RaporController;
 use App\Http\Controllers\RaporDetailController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\UpdatePasswordController;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NilaiTahsinController;
+use App\Http\Controllers\PeformaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -66,6 +68,9 @@ Route::group(['middleware' => ['auth', 'cekleveladmin', 'sweetalert'], 'prefix' 
     Route::resource('tahsin', TahsinController::class);
     Route::resource('kelas', KelasController::class);
     Route::post('NilaiTahsin', [NilaiTahsinController::class, 'store'])->name('nilaiTahsin.store');
+
+    Route::resource('peforma', PeformaController::class);
+    Route::post('NilaiPefroma', [NilaiPeformaController::class, 'store'])->name('nilaiPeforma.store');
 
 });
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use App\Models\Matpel;
 use App\Models\Nilai;
+use App\Models\Peforma;
 use App\Models\Siswa;
 use App\Models\Tahsin;
 use App\Models\User;
@@ -22,9 +23,10 @@ class RaporController extends Controller
         $data_matpel = Matpel::all();
         $data_nilai = Nilai::all();
         $data_tahsin = Tahsin::all();
+        $data_peforma = Peforma::all();
 
         $data_siswa = Siswa::all();
-        return view('admin.rapor', compact('data_nilai', 'data_matpel', 'data_siswa', 'data_tahsin'));
+        return view('admin.rapor', compact('data_nilai', 'data_matpel', 'data_siswa', 'data_tahsin', 'data_peforma'));
     }
 
 
