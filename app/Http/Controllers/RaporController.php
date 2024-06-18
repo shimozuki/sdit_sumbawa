@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use App\Models\Matpel;
 use App\Models\Nilai;
+use App\Models\NilaiTahsin;
 use App\Models\Peforma;
 use App\Models\Siswa;
 use App\Models\Tahsin;
@@ -24,9 +25,12 @@ class RaporController extends Controller
         $data_nilai = Nilai::all();
         $data_tahsin = Tahsin::all();
         $data_peforma = Peforma::all();
+        $ket_Tahsin = NilaiTahsin::select('ket')->first();
+        $ket_tahfiz = Nilai::select('ket')->first();
+        $bacaan = Tahsin::where('nama', 'Bacaan Terakhir')->first();
 
         $data_siswa = Siswa::all();
-        return view('admin.rapor', compact('data_nilai', 'data_matpel', 'data_siswa', 'data_tahsin', 'data_peforma'));
+        return view('admin.rapor', compact('data_nilai', 'data_matpel', 'data_siswa', 'data_tahsin', 'data_peforma', 'ket_Tahsin', 'ket_tahfiz', 'bacaan'));
     }
 
 

@@ -61,9 +61,14 @@
                             <tbody>
                                 <tr>
                                     <td>{{$i}}</td>
-                                    <td>{{$dn->tahsin->nama}}</td>
+                                    @if ($dn->tahsin->nama == "Bacaan Terakhir")
+                                    <td>{{ $dn->tahsin->nama }}</td>
+                                    <td colspan="2" class="text-center">{{$dn->nilai}}</td>
+                                    @else
+                                    <td>{{ $dn->tahsin->nama }}</td>
                                     <td>{{$dn->nilai}}</td>
                                     <td>{{$dn->predikat}}</td>
+                                    @endif
                                 </tr>
                             </tbody>
                             @php

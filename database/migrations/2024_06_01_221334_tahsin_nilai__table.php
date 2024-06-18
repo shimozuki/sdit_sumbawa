@@ -19,7 +19,7 @@ return new class extends Migration
             $table->foreign('nisn_siswa')->references('nisn')->on('siswa')->onDelete('cascade')->onUpdate('cascade');
             $table->string('kode_tahsin');
             $table->foreign('kode_tahsin')->references('kode_tahsin')->on('tahsin')->onDelete('cascade')->onUpdate('cascade');
-            $table->integer('nilai');
+            $table->string('nilai');
             $table->string('predikat', 1);
             $table->string('ket')->nullable();
             $table->timestamps();

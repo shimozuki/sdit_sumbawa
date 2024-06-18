@@ -19,7 +19,7 @@
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Input Tahsin</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Input tahfiz</h6>
                 </div>
                 <div class="card-body">
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1"><i class="fa-solid fa-plus"></i> Tambah Nilai</button>
@@ -51,18 +51,24 @@
                                             <select class="form-control select2" style="width: 100%" name="kode_tahsin" id="kode_tahsin" required>
                                                 <option selected disabled value="">Pilih Tahsin</option>
                                                 @foreach ($data_tahsin as $item)
-                                                <option value="{{ $item->kode_tahsin}}">{{$item->kode_tahsin}} - {{ $item->nama}}</option>
+                                                @php
+                                                $isBacaanTerakhir = ($item->kode_tahsin == '1730' || $item->nama == 'Bacaan Terakhir');
+                                                @endphp
+                                                <option value="{{ $item->kode_tahsin }}" data-bacaan="{{ $isBacaanTerakhir ? 'true' : 'false' }}">
+                                                    {{ $item->kode_tahsin }} - {{ $item->nama }}
+                                                </option>
                                                 @endforeach
                                             </select>
                                         </div>
                                         <div class="form-group">
                                             <input type="number" id="nilai" name="nilai" placeholder="Masukkan Nilai" class="form-control" required autocomplete="off" max="100" min="0">
                                         </div>
+                                        @if (empty($ket_Tahsin->ket))
                                         <div class="form-group">
                                             {{-- <label for="alamat" class="col-form-label" name="alamat" id="alamat">Alamat:</label> --}}
                                             <textarea class="form-control" id="ket" name="ket" placeholder="Masukkan Keterangan"></textarea>
                                         </div>
-
+                                        @endif
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
@@ -124,11 +130,11 @@
                                         <div class="form-group">
                                             <input type="number" id="nilai" name="nilai" placeholder="Masukkan Nilai" class="form-control" required autocomplete="off" max="100" min="0">
                                         </div>
+                                        @if (empty($ket_tahfiz->ket))
                                         <div class="form-group">
-                                            {{-- <label for="alamat" class="col-form-label" name="alamat" id="alamat">Alamat:</label> --}}
-                                            <textarea class="form-control" id="ket" name="ket" placeholder="Masukkan Keterangan"></textarea>
+                                            <textarea class="form-control" id="ket" name="ket" placeholder="Masukkan Kesimpulan"></textarea>
                                         </div>
-
+                                        @endif
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
@@ -274,3 +280,27 @@
 </div>
 <!-- /.container-fluid -->
 @endsection
+
+<script>
+    // JavaScript to conditionally change input type based on select option
+    document.addEventListener('DOMContentLoaded', function() {
+        const kodeTahsinSelect = document.getElementById('kode_tahsin');
+        const nilaiInput = document.getElementById('nilai');
+        const keteranganField = document.getElementById('keteranganField');
+
+        kodeTahsinSelect.addEventListener('change', function() {
+            const selectedOption = kodeTahsinSelect.options[kodeTahsinSelect.selectedIndex];
+            const isBacaanTerakhir = selectedOption.getAttribute('data-bacaan') === 'true';
+
+            if (isBacaanTerakhir) {
+                nilaiInput.setAttribute('type', 'text');
+                nilaiInput.setAttribute('placeholder', 'Masukkan Bacaan Terakhir');
+                keteranganField.style.display = 'none';
+            } else {
+                nilaiInput.setAttribute('type', 'number');
+                nilaiInput.setAttribute('placeholder', 'Masukkan Nilai');
+                keteranganField.style.display = 'block';
+            }
+        });
+    });
+</script>
