@@ -18,7 +18,7 @@ class NilaiTahsinController extends Controller
         $nilai->nisn_siswa = $request->nisn;
         $nilai->kode_tahsin = $request->kode_tahsin;
         $nilai->nilai = $request->nilai;
-        $nilai->ket = $request->keterangan;
+        $nilai->ket = $request->ket;
 
         switch ($nilai->nilai) {
             case $nilai->nilai >= 93 && $nilai->nilai <= 100:

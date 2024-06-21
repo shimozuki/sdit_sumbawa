@@ -128,7 +128,7 @@
                                             <input type="number" id="nilai" name="nilai" placeholder="Masukkan Nilai" class="form-control" required autocomplete="off" max="100" min="0">
                                         </div>
                                         <div class="form-group">
-                                            <textarea class="form-control" id="keterangan" name="keterangan" placeholder="Masukkan Kesimpulan"></textarea>
+                                            <textarea class="form-control" id="keterangan" name="ket" placeholder="Masukkan Kesimpulan"></textarea>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
@@ -309,8 +309,8 @@
                     url: `{{ route('check-nilai', ['nisn' => ':nisn']) }}`.replace(':nisn', nisn),
                     type: 'GET',
                     success: function(response) {
-                        if (response.keterangan) {
-                            $('#keterangan').val(response.keterangan).prop('readonly', true);
+                        if (response.ket) {
+                            $('#keterangan').val(response.ket).prop('readonly', true);
                         } else {
                             $('#keterangan').val('').prop('readonly', false);
                         }
