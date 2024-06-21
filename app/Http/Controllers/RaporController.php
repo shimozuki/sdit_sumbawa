@@ -25,12 +25,22 @@ class RaporController extends Controller
         $data_nilai = Nilai::all();
         $data_tahsin = Tahsin::all();
         $data_peforma = Peforma::all();
-        $ket_Tahsin = NilaiTahsin::select('ket')->first();
-        $ket_tahfiz = Nilai::select('ket')->first();
         $bacaan = Tahsin::where('nama', 'Bacaan Terakhir')->first();
 
         $data_siswa = Siswa::all();
-        return view('admin.rapor', compact('data_nilai', 'data_matpel', 'data_siswa', 'data_tahsin', 'data_peforma', 'ket_Tahsin', 'ket_tahfiz', 'bacaan'));
+        return view('admin.rapor', compact('data_nilai', 'data_matpel', 'data_siswa', 'data_tahsin', 'data_peforma', 'bacaan'));
+    }
+
+    public function checkKeterangan($nisn)
+    {
+        $keterangan = NilaiTahsin::select('ket')->where('nisn_siswa', $nisn)->first();
+        return response()->json(['ket' => $keterangan ? $keterangan->ket : null]);
+    }
+
+    public function checkNilai($nisn)
+    {
+        $nilai = Nilai::select('ket')->where('nisn_siswa', $nisn)->first();
+        return response()->json(['ket' => $nilai ? $nilai->ket : null]);
     }
 
 
@@ -64,15 +74,15 @@ class RaporController extends Controller
         $nilai->ket = $request->ket;
 
         switch ($nilai->nilai) {
-            case $nilai->nilai >= 93 && $nilai->nilai <=100:
+            case $nilai->nilai >= 93 && $nilai->nilai <= 100:
                 $hasil = "A";
                 break;
 
-            case $nilai->nilai >= 85 && $nilai->nilai <93:
+            case $nilai->nilai >= 85 && $nilai->nilai < 93:
                 $hasil = "B";
                 break;
 
-            case $nilai->nilai >= 77 && $nilai->nilai <85:
+            case $nilai->nilai >= 77 && $nilai->nilai < 85:
                 $hasil = "C";
                 break;
 
@@ -83,7 +93,6 @@ class RaporController extends Controller
         $nilai->predikat = $hasil;
         $nilai->save();
         return back()->with('success', 'Data Berhasil ditambah');
-
     }
 
     /**

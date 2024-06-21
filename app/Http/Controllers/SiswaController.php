@@ -18,8 +18,8 @@ class SiswaController extends Controller
     public function index()
     {
         $kelas = Kelas::all();
-        $siswa = Siswa::where('nisn', '=', Auth::user()->nisn_siswa)->firstOrFail();
-        $data_siswa = User::paginate(6);
+        $siswa = Siswa::whereNOT ('nisn', '=', Auth::user()->nisn_siswa)->first();
+        $data_siswa = User::where('role_id', 0)->paginate(6);
 
 
         return view('admin.siswa', compact('siswa', 'data_siswa', 'kelas'));

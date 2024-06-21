@@ -74,5 +74,8 @@ Route::group(['middleware' => ['auth', 'cekleveladmin', 'sweetalert'], 'prefix' 
 
 });
 
+Route::get('/admin/rapor/check-keterangan/{nisn}', [RaporController::class, 'checkKeterangan'])->name('check-keterangan');
+Route::get('/admin/rapor/check-nilai/{nisn}', [RaporController::class, 'checkNilai'])->name('check-nilai');
+
 
 

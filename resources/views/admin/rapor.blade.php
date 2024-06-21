@@ -19,7 +19,7 @@
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Input tahfiz</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Input tahsin</h6>
                 </div>
                 <div class="card-body">
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal1"><i class="fa-solid fa-plus"></i> Tambah Nilai</button>
@@ -63,22 +63,19 @@
                                         <div class="form-group">
                                             <input type="number" id="nilai" name="nilai" placeholder="Masukkan Nilai" class="form-control" required autocomplete="off" max="100" min="0">
                                         </div>
-                                        @if (empty($ket_Tahsin->ket))
                                         <div class="form-group">
-                                            {{-- <label for="alamat" class="col-form-label" name="alamat" id="alamat">Alamat:</label> --}}
                                             <textarea class="form-control" id="ket" name="ket" placeholder="Masukkan Keterangan"></textarea>
                                         </div>
-                                        @endif
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
                                         <button type="submit" class="btn btn-primary">Simpan</button>
                                     </div>
+                                </form>
                             </div>
-                            </form>
-
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -91,7 +88,7 @@
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Input Rapor</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Input Tahfiz</h6>
                 </div>
                 <div class="card-body">
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"><i class="fa-solid fa-plus"></i> Tambah Nilai</button>
@@ -109,7 +106,7 @@
                                     @csrf
                                     <div class="modal-body">
                                         <div class="form-group">
-                                            <select class="form-control select2" style="width: 100%" name="nisn" id="nisn" required>
+                                            <select class="form-control select2" style="width: 100%" name="nisn" id="nisnT" required>
                                                 <option selected disabled value="">Pilih Siswa</option>
                                                 @foreach ($data_siswa as $item)
                                                 @if ($item->nama == 'admin' )
@@ -130,11 +127,9 @@
                                         <div class="form-group">
                                             <input type="number" id="nilai" name="nilai" placeholder="Masukkan Nilai" class="form-control" required autocomplete="off" max="100" min="0">
                                         </div>
-                                        @if (empty($ket_tahfiz->ket))
                                         <div class="form-group">
-                                            <textarea class="form-control" id="ket" name="ket" placeholder="Masukkan Kesimpulan"></textarea>
+                                            <textarea class="form-control" id="keterangan" name="keterangan" placeholder="Masukkan Kesimpulan"></textarea>
                                         </div>
-                                        @endif
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
@@ -280,6 +275,56 @@
 </div>
 <!-- /.container-fluid -->
 @endsection
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#nisn').change(function() {
+            var nisn = $(this).val();
+            if (nisn) {
+                $.ajax({
+                    url: `{{ route('check-keterangan', ['nisn' => ':nisn']) }}`.replace(':nisn', nisn),
+                    type: 'GET',
+                    success: function(response) {
+                        if (response.ket) {
+                            $('#ket').val(response.ket).prop('readonly', true);
+                        } else {
+                            $('#ket').val('').prop('readonly', false);
+                        }
+                    }
+                });
+            } else {
+                $('#ket').val('').prop('readonly', false);
+            }
+        });
+
+      
+    });
+</script>
+<script>
+    $(document).ready(function() {
+        $('#nisnT').change(function() {
+            var nisn = $(this).val();
+            if (nisn) {
+                $.ajax({
+                    url: `{{ route('check-nilai', ['nisn' => ':nisn']) }}`.replace(':nisn', nisn),
+                    type: 'GET',
+                    success: function(response) {
+                        if (response.keterangan) {
+                            $('#keterangan').val().prop('readonly', false);
+                        } else {
+                            $('#keterangan').val(response.keterangan).prop('readonly', true);
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        console.error('AJAX Error:', status, error);
+                    }
+                });
+            } else {
+                $('#keterangan').val('').prop('readonly', false);
+            }
+        });
+    });
+</script>
 
 <script>
     // JavaScript to conditionally change input type based on select option

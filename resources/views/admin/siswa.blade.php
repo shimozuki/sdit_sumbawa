@@ -84,11 +84,8 @@
 
 
                                 @foreach ($data_siswa as $sw)
-                                @if ($sw->username == 'admin' )
-                                @continue
-                                @endif
                                 <tr>
-                                    <td>{{(($data_siswa->currentPage() - 1) * $data_siswa->perPage() + $loop->iteration)-1}}</td>
+                                    <td>{{(($data_siswa->currentPage() - 1) * $data_siswa->perPage() + $loop->iteration)}}</td>
                                     <td>{{$sw->siswa->nisn}}</td>
                                     <td>{{$sw->siswa->nama}}</td>
                                     <td>{{$sw->siswa->nama_wali}}</td>
