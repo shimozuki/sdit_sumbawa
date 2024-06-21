@@ -310,9 +310,9 @@
                     type: 'GET',
                     success: function(response) {
                         if (response.keterangan) {
-                            $('#keterangan').val().prop('readonly', false);
-                        } else {
                             $('#keterangan').val(response.keterangan).prop('readonly', true);
+                        } else {
+                            $('#keterangan').val('').prop('readonly', false);
                         }
                     },
                     error: function(xhr, status, error) {
