@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KelasController;
 use App\Http\Controllers\MataPelajaranController;
 use App\Http\Controllers\NilaiPeformaController;
@@ -64,6 +65,7 @@ Route::group(['middleware' => ['auth', 'cekleveladmin', 'sweetalert'], 'prefix' 
         'uses' => 'App\Http\Controllers\NilaiSiswaController@update',
     ]);
 
+    Route::get('/matpel/average-scores', [DashboardController::class, 'getAverageScores']);
     Route::get('/send-whatsapp/{username}', [SiswaController::class, 'sendWhatsApp'])->name('send.whatsapp');
 
     Route::resource('tahsin', TahsinController::class);

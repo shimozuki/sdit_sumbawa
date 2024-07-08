@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kelas;
 use Illuminate\Support\Facades\DB;
 use App\Models\Matpel;
 use App\Models\Nilai;
@@ -11,6 +12,7 @@ use App\Models\Siswa;
 use App\Models\Tahsin;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RaporController extends Controller
 {
@@ -26,9 +28,24 @@ class RaporController extends Controller
         $data_tahsin = Tahsin::all();
         $data_peforma = Peforma::all();
         $bacaan = Tahsin::where('nama', 'Bacaan Terakhir')->first();
+        $kelas = Kelas::where('wali_kelas', Auth::user()->id)->select('kode_kelas')->first();
+        $message = null;
 
-        $data_siswa = Siswa::all();
-        return view('admin.rapor', compact('data_nilai', 'data_matpel', 'data_siswa', 'data_tahsin', 'data_peforma', 'bacaan'));
+        if (Auth::user()->role_id == 1) {
+            $data_siswa = Siswa::all();
+        } else {
+            if ($kelas) {
+                $data_siswa = Siswa::where('kelas_id', $kelas->kode_kelas)->get();
+                if ($data_siswa->isEmpty()) {
+                    $message = 'Belum ada siswa pada kelas Anda';
+                }
+            } else {
+                $data_siswa = collect();
+                $message = 'Belum ada siswa pada kelas Anda';
+            }
+        }
+
+        return view('admin.rapor', compact('data_nilai', 'data_matpel', 'data_siswa', 'data_tahsin', 'data_peforma', 'bacaan', 'message'));
     }
 
     public function checkKeterangan($nisn)

@@ -76,7 +76,7 @@
                                     <th>Nama siswa</th>
                                     <th>Nama wali</th>
                                     <th>Nama tlpn wali</th>
-                                    <th>Alamat</th>
+                                    <th>Kelas</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -86,20 +86,20 @@
                                 @foreach ($data_siswa as $sw)
                                 <tr>
                                     <td>{{(($data_siswa->currentPage() - 1) * $data_siswa->perPage() + $loop->iteration)}}</td>
-                                    <td>{{$sw->siswa->nisn}}</td>
-                                    <td>{{$sw->siswa->nama}}</td>
-                                    <td>{{$sw->siswa->nama_wali}}</td>
+                                    <td>{{$sw->nisn}}</td>
+                                    <td>{{$sw->nama}}</td>
+                                    <td>{{$sw->nama_wali}}</td>
                                     <td>{{ $sw->username }}</td>
-                                    <td>{{$sw->siswa->alamat}}</td>
+                                    <td>{{$sw->nama_kelas}}</td>
                                     <td class="d-flex justify-content-left"><a href="{{ route('send.whatsapp', ['username' => $sw->username]) }}" class="btn btn-success btn-sm mr-1"><i class="fa-solid fa-phone to-square mr-1"></i>kirim</a>
-                                        <a href="" class="btn btn-warning btn-sm mr-1" data-toggle="modal" data-target="#ubah_siswa{{$sw->siswa->nisn}}"><i class="fa-solid fa-pen to-square mr-1"></i>Ubah</a>
-                                        <a href="" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapus_siswa{{$sw->siswa->nisn}}"><i class="fa-solid fa-trash to-square mr-1"></i>Hapus</a>
+                                        <a href="" class="btn btn-warning btn-sm mr-1" data-toggle="modal" data-target="#ubah_siswa{{$sw->nisn}}"><i class="fa-solid fa-pen to-square mr-1"></i>Ubah</a>
+                                        <a href="" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapus_siswa{{$sw->nisn}}"><i class="fa-solid fa-trash to-square mr-1"></i>Hapus</a>
                                     </td>
                                 </tr>
                                 @endforeach
 
                                 @foreach ($data_siswa as $sw)
-                                <div class="modal fade" id="hapus_siswa{{$sw->siswa->nisn}}" tabindex="-1" role="dialog" aria-labelledby="hapus-siswa" aria-hidden="true">
+                                <div class="modal fade" id="hapus_siswa{{$sw->nisn}}" tabindex="-1" role="dialog" aria-labelledby="hapus-siswa" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -113,7 +113,7 @@
                                             </div>
                                             <div class="modal-footer">
                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
-                                                <form action="{{url('admin/siswa', $sw->siswa->nisn)}}" method="POST">
+                                                <form action="{{url('admin/siswa', $sw->nisn)}}" method="POST">
                                                     {{ csrf_field() }}
                                                     <input type="hidden" name="_method" value="DELETE">
                                                     <button class="btn btn-danger" type="submit">hapus</button>
@@ -124,7 +124,7 @@
                                     </div>
                                 </div>
 
-                                <div class="modal fade" id="ubah_siswa{{$sw->siswa->nisn}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal fade" id="ubah_siswa{{$sw->nisn}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
@@ -133,20 +133,20 @@
                                                     <span aria-hidden="true">&times;</span>
                                                 </button>
                                             </div>
-                                            <form action="{{url('admin/siswa')}}/{{$sw->siswa->nisn}}" method="POST">
+                                            <form action="{{url('admin/siswa')}}/{{$sw->nisn}}" method="POST">
                                                 @csrf
                                                 <div class="modal-body">
                                                     <div class="form-group">
-                                                        <input type="text" id="nisn" name="nisn" placeholder="Masukkan nomor NISN" class="form-control" maxlength="10" required autocomplete="off" pattern="[0-9]+" value="{{$sw->siswa->nisn}}">
+                                                        <input type="text" id="nisn" name="nisn" placeholder="Masukkan nomor NISN" class="form-control" maxlength="10" required autocomplete="off" pattern="[0-9]+" value="{{$sw->nisn}}">
                                                     </div>
                                                     <div class="form-group">
                                                         <input type="text" id="username" name="username" placeholder="Masukkan username" class="form-control" required autocomplete="off" value="{{$sw->username}}">
                                                     </div>
                                                     <div class="form-group">
-                                                        <input type="text" id="nama" name="nama" placeholder="Masukkan nama" class="form-control" required autocomplete="off" value="{{$sw->siswa->nama}}">
+                                                        <input type="text" id="nama" name="nama" placeholder="Masukkan nama" class="form-control" required autocomplete="off" value="{{$sw->nama}}">
                                                     </div>
                                                     <div class="form-group">
-                                                        <input type="text" id="nama_wali" name="nama_wali" placeholder="Masukkan nama_wali" class="form-control" required autocomplete="off" value="{{$sw->siswa->nama_wali}}">
+                                                        <input type="text" id="nama_wali" name="nama_wali" placeholder="Masukkan nama_wali" class="form-control" required autocomplete="off" value="{{$sw->nama_wali}}">
                                                     </div>
                                                     <div class="form-group">
                                                         <input type="text" id="no_tlpn_wali" name="no_tlpn_wali" placeholder="Masukkan no_tlpn_wali" class="form-control" required autocomplete="off" value="{{$sw->username}}">
@@ -162,7 +162,7 @@
 
                                                     <div class="form-group">
                                                         {{-- <label for="alamat" class="col-form-label" name="alamat" id="alamat">Alamat:</label> --}}
-                                                        <textarea class="form-control" id="alamat" name="alamat" placeholder="Masukkan alamat">{{$sw->siswa->alamat}}</textarea>
+                                                        <textarea class="form-control" id="alamat" name="alamat" placeholder="Masukkan alamat">{{$sw->alamat}}</textarea>
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">

@@ -24,7 +24,7 @@
                                 <tr>
                                     <th>No</th>
                                     <th>Nama Guru</th>
-                                    <th>User name</th>
+                                    <th>Username</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -35,7 +35,7 @@
                                     <td>{{ $sw->username }}</td>
                                     <td>{{ $sw->username }}</td>
                                     <td class="d-flex justify-content-left">
-                                        <a href="{{ route('users.edit', $sw->id) }}" class="btn btn-warning btn-sm mr-1"><i class="fa-solid fa-pen-to-square mr-1"></i>Ubah</a>
+                                        <a href="#" class="btn btn-warning btn-sm mr-1" data-toggle="modal" data-target="#editUserModal-{{ $sw->id }}"><i class="fa-solid fa-pen-to-square mr-1"></i>Ubah</a>
                                         <form action="{{ route('users.destroy', $sw->id) }}" method="POST">
                                             @csrf
                                             @method('DELETE')
@@ -56,7 +56,8 @@
     </div>
 </div>
 <!-- /.container-fluid -->
- <!-- Modal -->
+
+<!-- Add User Modal -->
 <div class="modal fade" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="addUserModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -87,5 +88,38 @@
     </div>
 </div>
 
+<!-- Edit User Modals -->
+@foreach ($data_siswa as $sw)
+<div class="modal fade" id="editUserModal-{{ $sw->id }}" tabindex="-1" role="dialog" aria-labelledby="editUserModalLabel-{{ $sw->id }}" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editUserModalLabel-{{ $sw->id }}">Ubah Guru</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{ route('users.update', $sw->id) }}" method="POST">
+                @csrf
+                @method('PUT')
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="username-{{ $sw->id }}">Username</label>
+                        <input type="text" name="username" class="form-control" id="username-{{ $sw->id }}" value="{{ $sw->username }}" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password-{{ $sw->id }}">Password</label>
+                        <input type="password" name="password" class="form-control" id="password-{{ $sw->id }}" required>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@endforeach
 
 @endsection

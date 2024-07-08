@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Kelas;
+use Illuminate\Support\Facades\DB;
 
 class SiswaController extends Controller
 {
@@ -18,8 +19,13 @@ class SiswaController extends Controller
     public function index()
     {
         $kelas = Kelas::all();
-        $siswa = Siswa::whereNOT ('nisn', '=', Auth::user()->nisn_siswa)->first();
-        $data_siswa = User::where('role_id', 0)->paginate(6);
+        $siswa = Siswa::whereNOT('nisn', '=', Auth::user()->nisn_siswa)->first();
+        $data_siswa = DB::table('siswa')
+            ->join('users', 'siswa.nisn', '=', 'users.nisn_siswa')
+            ->join('kelas', 'siswa.kelas_id', '=', 'kelas.kode_kelas')
+            ->where('users.role_id', 0)
+            ->select('siswa.*', 'users.username', 'kelas.nama_kelas')
+            ->paginate(6);
 
 
         return view('admin.siswa', compact('siswa', 'data_siswa', 'kelas'));
