@@ -15,11 +15,11 @@ class Nilai extends Model
 
     public function matpel()
     {
-        return $this->belongsTo(Matpel::class, 'kode_matpel','kode');
+        return $this->belongsTo(Matpel::class, 'kode_matpel');
     }
 
     public function siswa()
     {
-        return $this->belongsTo(Siswa::class, 'nisn_siswa','nisn');
+        return $this->belongsTo(Siswa::class, 'nisn_siswa');
     }
 }

@@ -4,14 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Kelas;
+use App\Models\User;
 
 class KelasController extends Controller
 {
     public function index()
     {
-        $kelas = Kelas::paginate(5);
+        $kelas = Kelas::with('waliKelas')->paginate(5);
+        $users = User::where('role_id', 2)->get();
 
-        return view('admin.kelas', compact('kelas'));
+        return view('admin.kelas', compact('kelas', 'users'));
     }
 
     public function store(Request $request)
@@ -20,12 +22,14 @@ class KelasController extends Controller
         $request->validate([
             'kode_kelas' => 'required|unique:kelas|regex:/^\d+$/',
             'nama_kelas' => 'required|string|max:50',
+            'wali_kelas' => 'required',
         ]);
 
         // Buat objek Kelas baru
         $kelas = new Kelas();
         $kelas->kode_kelas = $request->kode_kelas;
         $kelas->nama_kelas = $request->nama_kelas;
+        $kelas->wali_kelas = $request->wali_kelas;
 
         // Simpan objek Kelas ke dalam database
         $kelas->save();
@@ -40,6 +44,7 @@ class KelasController extends Controller
         $request->validate([
             'kode_kelas' => 'required|regex:/^\d+$/',
             'nama_kelas' => 'required|string|max:50',
+            'wali_kelas' => 'required',
         ]);
 
         // Temukan kelas berdasarkan kode kelas
@@ -53,6 +58,7 @@ class KelasController extends Controller
 
         $kelas->kode_kelas = $request->kode_kelas;
         $kelas->nama_kelas = $request->nama_kelas;
+        $kelas->wali_kelas = $request->wali_kelas;
         $kelas->save();
 
         // Redirect kembali ke halaman sebelumnya dengan pesan sukses

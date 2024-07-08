@@ -22,4 +22,9 @@ class Siswa extends Model
     {
         return $this->hasMany(Nilai::class,'nisn_siswa', 'nisn');
     }
+
+    public function kelas()
+    {
+        return $this->belongsTo(Kelas::class, 'kelas_id', 'kode_kelas');
+    }
 }

@@ -39,10 +39,11 @@ class Kernel extends HttpKernel
         ],
 
         'api' => [
-            // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
+            \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             'throttle:api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
+
     ];
 
     /**
@@ -65,6 +66,6 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'cekleveluser' => \App\Http\Middleware\CeklevelUser::class,
         'cekleveladmin' => \App\Http\Middleware\CeklevelAdmin::class,
-        'sweetalert'=>\RealRashid\SweetAlert\ToSweetAlert::class,
+        'sweetalert' => \RealRashid\SweetAlert\ToSweetAlert::class,
     ];
 }

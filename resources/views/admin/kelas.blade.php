@@ -42,6 +42,14 @@
                                         <div class="form-group">
                                             <input type="text" id="nama" name="nama_kelas" placeholder="Masukkan Nama Kelas" class="form-control" required autocomplete="off">
                                         </div>
+                                        <div class="form-group">
+                                            <select id="wali_kelas" name="wali_kelas" class="form-control" required>
+                                                <option value="">Pilih Wali Kelas</option>
+                                                @foreach ($users as $user)
+                                                <option value="{{ $user->id }}">{{ $user->username }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
@@ -60,18 +68,26 @@
                                     <th>No</th>
                                     <th>Kode Kelas</th>
                                     <th>Nama Kelas</th>
+                                    <th>Wali Kelas</th>
                                     <th>Option</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($kelas as $row)
+                                @foreach ($kelas as $kls)
                                 <tr>
-                                    <td>{{($kelas->currentPage() - 1) * $kelas->perPage() + $loop->iteration}}</td>
-                                    <td>{{$row->kode_kelas}}</td>
-                                    <td>{{$row->nama_kelas}}</td>
+                                    <td>{{ (($kelas->currentPage() - 1) * $kelas->perPage() + $loop->iteration) }}</td>
+                                    <td>{{ $kls->kode_kelas }}</td>
+                                    <td>{{ $kls->nama_kelas }}</td>
+                                    <td>{{ $kls->waliKelas->username }}</td> <!-- Menggunakan optional -->
                                     <td class="d-flex justify-content-left">
-                                        <a href="" class="btn btn-warning btn-sm mr-1" data-toggle="modal" data-target="#ubah_kelas{{$row->kode_kelas}}"><i class="fa-solid fa-pen to-square mr-1"></i>Ubah</a>
-                                        <a href="" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#hapus_kelas{{$row->kode_kelas}}"><i class="fa-solid fa-trash to-square mr-1"></i>Hapus</a>
+                                        <a href="#" class="btn btn-warning btn-sm mr-1" data-toggle="modal" data-target="#ubah_kelas{{$kls->kode_kelas}}">
+                                            <i class="fa-solid fa-pen-to-square mr-1"></i>Ubah
+                                        </a>
+                                        <form action="{{ route('kelas.destroy', $kls->kode_kelas) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button class="btn btn-danger btn-sm"><i class="fa-solid fa-trash mr-1"></i>Hapus</button>
+                                        </form>
                                     </td>
                                 </tr>
                                 @endforeach
@@ -121,6 +137,14 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <input type="text" id="nama" name="nama_kelas" placeholder="Masukkan Nama Kelas" class="form-control" required autocomplete="off" value="{{$mp->nama_kelas}}">
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <select id="wali_kelas" name="wali_kelas" class="form-control" required>
+                                                            <option value="">Pilih Wali Kelas</option>
+                                                            @foreach ($users as $user)
+                                                            <option value="{{ $user->id }}" {{ $mp->wali_kelas == $user->id ? 'selected' : '' }}>{{ $user->username }}</option>
+                                                            @endforeach
+                                                        </select>
                                                     </div>
                                                 </div>
                                                 <div class="modal-footer">

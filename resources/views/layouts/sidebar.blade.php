@@ -11,13 +11,13 @@
     <hr class="sidebar-divider my-0">
 
     <!-- Check if user has role_id = 1 or role_id = 2 -->
-        <!-- Nav Item - Dashboard -->
-        <li class="nav-item {{ request()->is('admin/dashboard') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('dashboard') }}">
-                <i class="fas fa-fw fa-house"></i>
-                <span>Dashboard</span>
-            </a>
-        </li>
+    <!-- Nav Item - Dashboard -->
+    <li class="nav-item {{ request()->is('admin/dashboard') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('dashboard') }}">
+            <i class="fas fa-fw fa-house"></i>
+            <span>Dashboard</span>
+        </a>
+    </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider">
@@ -28,48 +28,53 @@
     </div>
 
     @if(auth()->user()->role_id == 1)
-        <li class="nav-item {{ request()->is('admin/siswa') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('siswa.index') }}">
-                <i class="fas fa-fw fa-user"></i>
-                <span>Siswa</span>
-            </a>
-        </li>
+    <li class="nav-item {{ request()->is('admin/siswa') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('siswa.index') }}">
+            <i class="fas fa-fw fa-user"></i>
+            <span>Siswa</span>
+        </a>
+    </li>
+    <li class="nav-item {{ request()->is('admin/users') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('users.index') }}">
+            <i class="fas fa-fw fa-user"></i>
+            <span>Guru</span>
+        </a>
+    </li>
+    <li class="nav-item {{ request()->is('admin/kelas') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('kelas.index') }}">
+            <i class="fas fa-fw fa-bank"></i>
+            <span>Kelas</span>
+        </a>
+    </li>
 
-        <li class="nav-item {{ request()->is('admin/kelas') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('kelas.index') }}">
-                <i class="fas fa-fw fa-bank"></i>
-                <span>Kelas</span>
-            </a>
-        </li>
+    <li class="nav-item {{ request()->is('matpel') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('matpel.index') }}">
+            <i class="fas fa-fw fa-book"></i>
+            <span>Surah</span>
+        </a>
+    </li>
 
-        <li class="nav-item {{ request()->is('matpel') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('matpel.index') }}">
-                <i class="fas fa-fw fa-book"></i>
-                <span>Surah</span>
-            </a>
-        </li>
+    <li class="nav-item {{ request()->is('tahsin') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('tahsin.index') }}">
+            <i class="fas fa-fw fa-book"></i>
+            <span>Tahsin</span>
+        </a>
+    </li>
 
-        <li class="nav-item {{ request()->is('tahsin') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('tahsin.index') }}">
-                <i class="fas fa-fw fa-book"></i>
-                <span>Tahsin</span>
-            </a>
-        </li>
-
-        <li class="nav-item {{ request()->is('peforma') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('peforma.index') }}">
-                <i class="fa-solid fa-clipboard"></i>
-                <span>Peforma</span>
-            </a>
-        </li>
+    <li class="nav-item {{ request()->is('peforma') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('peforma.index') }}">
+            <i class="fa-solid fa-clipboard"></i>
+            <span>Peforma</span>
+        </a>
+    </li>
     @endif
 
-        <li class="nav-item {{ request()->is('admin/rapor') ? 'active' : '' }}">
-            <a class="nav-link" href="{{ route('rapor.index') }}">
-                <i class="fas fa-fw fa-user-graduate"></i>
-                <span>Rapor</span>
-            </a>
-        </li>
+    <li class="nav-item {{ request()->is('admin/rapor') ? 'active' : '' }}">
+        <a class="nav-link" href="{{ route('rapor.index') }}">
+            <i class="fas fa-fw fa-user-graduate"></i>
+            <span>Rapor</span>
+        </a>
+    </li>
 
     <!-- Divider -->
     <hr class="sidebar-divider d-none d-md-block">

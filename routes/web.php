@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\NilaiTahsinController;
 use App\Http\Controllers\PeformaController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,7 +38,7 @@ Route::get('logout', 'App\Http\Controllers\AuthController@logout')->name('logout
 
 // Route::get('dashboard', 'App\Http\Controllers\DashboardController@index')->name('dashboard');
 
-Route::group(['middleware' => ['auth', 'cekleveladmin', 'sweetalert'], 'prefix' => 'admin'], function(){
+Route::group(['middleware' => ['auth', 'cekleveladmin', 'sweetalert'], 'prefix' => 'admin'], function () {
     Route::get('dashboard', 'App\Http\Controllers\DashboardController@index')->name('dashboard');
     Route::resource('siswa', SiswaController::class);
     Route::resource('matpel', MataPelajaranController::class);
@@ -72,10 +73,8 @@ Route::group(['middleware' => ['auth', 'cekleveladmin', 'sweetalert'], 'prefix' 
     Route::resource('peforma', PeformaController::class);
     Route::post('NilaiPefroma', [NilaiPeformaController::class, 'store'])->name('nilaiPeforma.store');
 
+    Route::resource('users', UserController::class);
 });
 
 Route::get('/admin/rapor/check-keterangan/{nisn}', [RaporController::class, 'checkKeterangan'])->name('check-keterangan');
 Route::get('/admin/rapor/check-nilai/{nisn}', [RaporController::class, 'checkNilai'])->name('check-nilai');
-
-
-
